@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kigali 1994</title>
+    <title>Kigali 1990s</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
    	crossorigin=""/>
@@ -15,7 +15,7 @@
             padding: 0;
             margin: 0;
         }
-        html, body, #mapid {
+        html, body, #kigali90 {
             height: 100%;
             width: 100%;
         }
@@ -23,7 +23,7 @@
   </head>
 
   <body>
-  	<div id="mapid" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+  	<div id="kigali90" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
 
   	</div>
 
@@ -50,7 +50,7 @@
           opacity: .67
       });
 
-      var map = L.map('mapid', {
+      var map = L.map('kigali90', {
           center: [-1.96, 30.08],
           zoom: 14,
           layers: [satellite, kigali] 
