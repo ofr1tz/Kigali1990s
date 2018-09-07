@@ -43,7 +43,7 @@
       });
 
       var kigali = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-          attribution: 'Vintage City Map <a target="_blank" and rel="noopener noreferrer" href="http://www.lib.utexas.edu/maps/africa/txu-oclc-55668328-kigali-1994.jpg">University of Texas Libraries</a>',   
+          attribution: 'City Map <a target="_blank" and rel="noopener noreferrer" href="http://www.lib.utexas.edu/maps/africa/txu-oclc-55668328-kigali-1994.jpg">University of Texas Libraries</a>',   
           maxZoom: 18,
           id: 'ofr1tz.6zezszqa', 
           accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNpc2x2aGYzejAwOGgyb3JubGxhbHR6bXQifQ.Q_44uwg7Q0thOmuPAwDf4g',
@@ -62,7 +62,7 @@
       };
 
       var overlayMaps = {
-          "Vintage Kigali City Map": kigali
+          "Kigali City Map": kigali
       };
 
     	L.control.layers(baseMaps, overlayMaps).addTo(map);
