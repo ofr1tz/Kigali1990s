@@ -7,6 +7,9 @@
    	crossorigin=""/>
    	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="">
    	</script>
+    <!-- Opacity controls: Copyright (c) 2018 Yasunori Kirimoto -->
+    <script src="./plugin/Leaflet.Control.Opacity/L.Control.Opacity.js"></script>
+    <link href="./plugin/Leaflet.Control.Opacity/L.Control.Opacity.css" rel="stylesheet" />
     <style type='text/css'>
     	body {
             padding: 0;
@@ -25,20 +28,46 @@
   	</div>
 
   	<script type="text/javascript">
-    	var mymap = L.map('mapid').setView([-1.96, 30.08], 14);
-
-    	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    		attribution: 'Imagery © <a target="_blank" and rel="noopener noreferrer" href="http://mapbox.com">Mapbox</a>',   maxZoom: 18,
+    	var satellite = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    		  attribution: 'Satellite Imagery © <a target="_blank" and rel="noopener noreferrer" href="http://mapbox.com">Mapbox</a>',   
+          maxZoom: 18,
     			id: 'mapbox.satellite', 
     			accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNpc2x2aGYzejAwOGgyb3JubGxhbHR6bXQifQ.Q_44uwg7Q0thOmuPAwDf4g'
-    	}).addTo(mymap);
+    	});
 
-    	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    		attribution: 'Map <a target="_blank" and rel="noopener noreferrer" href="http://www.lib.utexas.edu/maps/africa/txu-oclc-55668328-kigali-1994.jpg">University of Texas Libraries</a>',   maxZoom: 18,
-    			id: 'ofr1tz.6zezszqa', 
-    			accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNpc2x2aGYzejAwOGgyb3JubGxhbHR6bXQifQ.Q_44uwg7Q0thOmuPAwDf4g',
-    			opacity: .67
-    	}).addTo(mymap);
+      var streets = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Street Map © <a target="_blank" and rel="noopener noreferrer" href="http://mapbox.com">Mapbox</a>',   
+          maxZoom: 18,
+          id: 'mapbox.mapbox-streets-v7', 
+          accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNpc2x2aGYzejAwOGgyb3JubGxhbHR6bXQifQ.Q_44uwg7Q0thOmuPAwDf4g'
+      });
+
+      var kigali = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Vintage City Map <a target="_blank" and rel="noopener noreferrer" href="http://www.lib.utexas.edu/maps/africa/txu-oclc-55668328-kigali-1994.jpg">University of Texas Libraries</a>',   
+          maxZoom: 18,
+          id: 'ofr1tz.6zezszqa', 
+          accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNpc2x2aGYzejAwOGgyb3JubGxhbHR6bXQifQ.Q_44uwg7Q0thOmuPAwDf4g',
+          opacity: .67
+      });
+
+      var map = L.map('mapid', {
+          center: [-1.96, 30.08],
+          zoom: 14,
+          layers: [satellite, kigali] 
+      });
+
+      var baseMaps = {
+          "Mapbox Satellite": satellite,
+          "Mapbox Streets": streets
+      };
+
+      var overlayMaps = {
+          "Vintage Kigali City Map": kigali
+      };
+
+    	L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+      L.control.opacity(overlayMaps).addTo(map);
 
     </script>
   </body>
