@@ -35,11 +35,9 @@
     			accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNpc2x2aGYzejAwOGgyb3JubGxhbHR6bXQifQ.Q_44uwg7Q0thOmuPAwDf4g'
     	});
 
-      var streets = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-          attribution: 'Street Map © <a target="_blank" and rel="noopener noreferrer" href="http://mapbox.com">Mapbox</a>',   
-          maxZoom: 18,
-          id: 'mapbox.mapbox-streets-v7', 
-          accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNpc2x2aGYzejAwOGgyb3JubGxhbHR6bXQifQ.Q_44uwg7Q0thOmuPAwDf4g'
+      var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: 'Street Map data © <a target="_blank" and rel="noopener noreferrer" href=""https://openstreetmap.org">OpenStreetMap</a> contributors',   
+          maxZoom: 18
       });
 
       var kigali = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -58,7 +56,7 @@
 
       var baseMaps = {
           "Mapbox Satellite": satellite,
-          "Mapbox Streets": streets
+          "OpenStreetMap": streets
       };
 
       var overlayMaps = {
