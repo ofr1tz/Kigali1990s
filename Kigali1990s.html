@@ -10,7 +10,8 @@
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="">
     </script>
     
-  <!-- Opacity controls: Copyright (c) 2013, Jared Dominguez Copyright (c) 2013, LizardTech -->
+  <!-- Opacity controls: Copyright (c) 2013, Jared Dominguez Copyright (c) 2013, LizardTech
+       (with changed opacity control button icon) -->
   <link rel="stylesheet" href="lib/opacity/Control.Opacity.css" />
     <script src="lib/opacity/Control.Opacity.js"></script>
     
@@ -36,6 +37,7 @@
     </div>
 
     <script type="text/javascript">
+      // Define Layers
       var satellite = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
           attribution: 'Satellite Imagery © <a target="_blank" and rel="noopener noreferrer" href="http://mapbox.com">Mapbox</a>',   
           maxZoom: 18,
@@ -56,6 +58,7 @@
           opacity: .67
       });
 
+      // Define Map
       var map = L.map('kigali90', {
           center: [-1.96, 30.08],
           zoom: 14,
@@ -71,22 +74,22 @@
           "Kigali City Map": kigali
       };
 
+      // Add Layer Control
       L.control.layers(baseMaps, overlayMaps).addTo(map);
     
-    //Create the opacity controls
-    var higherOpacity = new L.Control.higherOpacity();
-    map.addControl(higherOpacity);
-    var lowerOpacity = new L.Control.lowerOpacity();
-    map.addControl(lowerOpacity);
-        var opacitySlider = new L.Control.opacitySlider();
-        map.addControl(opacitySlider);
+      // Create the opacity controls
+      var higherOpacity = new L.Control.higherOpacity();
+      map.addControl(higherOpacity);
+      var lowerOpacity = new L.Control.lowerOpacity();
+      map.addControl(lowerOpacity);
+      var opacitySlider = new L.Control.opacitySlider();
+      map.addControl(opacitySlider);
     
-      //Specify the opacity control layer
-        opacitySlider.setOpacityLayer(kigali);
+      // Specify the opacity control layer
+      opacitySlider.setOpacityLayer(kigali);
         
-      //Set initial opacity to 0.67
-        kigali.setOpacity(0.67);
-
+      // Set initial opacity to 0.67
+      kigali.setOpacity(0.67);
 
     </script>
   </body>
