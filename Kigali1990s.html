@@ -3,16 +3,23 @@
   <head>
     <title>Kigali 1990s</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
-   	crossorigin=""/>
-   	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="">
-   	</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- Opacity controls: Copyright (c) 2018 Yasunori Kirimoto -->
-    <script src="./plugin/Leaflet.Control.Opacity/L.Control.Opacity.js"></script>
-    <link href="./plugin/Leaflet.Control.Opacity/L.Control.Opacity.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="">
+    </script>
+    
+  <!-- Opacity controls: Copyright (c) 2013, Jared Dominguez Copyright (c) 2013, LizardTech -->
+  <link rel="stylesheet" href="lib/opacity/Control.Opacity.css" />
+    <script src="lib/opacity/Control.Opacity.js"></script>
+    
+  <script src="lib/jquery/jquery-1.9.1.js"></script>
+    <script src="lib/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <link rel="stylesheet" href="lib/jquery/jquery-ui-1.10.3.custom.min.css" />
+    
     <style type='text/css'>
-    	body {
+      body {
             padding: 0;
             margin: 0;
         }
@@ -24,17 +31,17 @@
   </head>
 
   <body>
-  	<div id="kigali90" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+    <div id="kigali90" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
 
-  	</div>
+    </div>
 
-  	<script type="text/javascript">
-    	var satellite = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    		  attribution: 'Satellite Imagery © <a target="_blank" and rel="noopener noreferrer" href="http://mapbox.com">Mapbox</a>',   
+    <script type="text/javascript">
+      var satellite = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Satellite Imagery © <a target="_blank" and rel="noopener noreferrer" href="http://mapbox.com">Mapbox</a>',   
           maxZoom: 18,
-    			id: 'mapbox.satellite', 
-    			accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNrOWEzajVzMzAzc24za284bnJlcjFjMWcifQ.8uvO3K-B9OkIZ55vfmCO4w'
-    	});
+          id: 'mapbox.satellite', 
+          accessToken: 'pk.eyJ1Ijoib2ZyMXR6IiwiYSI6ImNrOWEzajVzMzAzc24za284bnJlcjFjMWcifQ.8uvO3K-B9OkIZ55vfmCO4w'
+      });
 
       var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: 'Street Map data © <a target="_blank" and rel="noopener noreferrer" href="https://openstreetmap.org">OpenStreetMap</a> contributors',   
@@ -64,9 +71,22 @@
           "Kigali City Map": kigali
       };
 
-    	L.control.layers(baseMaps, overlayMaps).addTo(map);
+      L.control.layers(baseMaps, overlayMaps).addTo(map);
+    
+    //Create the opacity controls
+    var higherOpacity = new L.Control.higherOpacity();
+    map.addControl(higherOpacity);
+    var lowerOpacity = new L.Control.lowerOpacity();
+    map.addControl(lowerOpacity);
+        var opacitySlider = new L.Control.opacitySlider();
+        map.addControl(opacitySlider);
+    
+      //Specify the opacity control layer
+        opacitySlider.setOpacityLayer(kigali);
+        
+      //Set initial opacity to 0.67
+        kigali.setOpacity(0.67);
 
-      L.control.opacity(overlayMaps).addTo(map);
 
     </script>
   </body>
