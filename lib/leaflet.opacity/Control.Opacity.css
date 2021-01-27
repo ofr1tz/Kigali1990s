@@ -13,6 +13,7 @@
     cursor: auto;
     text-align: center;
     background-color: #ffffff;
+	cursor: pointer; /* added (of)*/
 }
 
 .higher_opacity_control:hover {
@@ -34,6 +35,7 @@
     cursor: auto;
     text-align: center;
     background-color: #ffffff;
+	cursor: pointer; /* added (of)*/
 }
 
 .lower_opacity_control:hover {
@@ -44,4 +46,4 @@
     background-image: none;
     background-color: #646464;
     height: 200px;
-}  
+}
