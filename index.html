@@ -27,10 +27,10 @@
       }
       #aboutButton {
             position: absolute;
-            bottom: 11px;
+            bottom: 20px;
             left: 11px;
             padding: 10px;
-            z-index: 400;
+            z-index: 800;
             cursor: pointer;
       }
     </style>
@@ -38,7 +38,7 @@
 	
   <body>
   	<div id="kigali90" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0"></div>
-    <button id="aboutButton" onclick="window.open('https://www.oliverfritz.de/portfolio/kigali-1994/','_blank')">About</button> 
+    <button id="aboutButton" class=".leaflet-control-layers" onclick="window.open('https://www.oliverfritz.de/portfolio/kigali-1994/','_blank')">About</button> 
   	<script type="text/javascript">
       // define layers
 	  var satellite = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
